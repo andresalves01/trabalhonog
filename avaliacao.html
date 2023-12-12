@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Avaliação - Mecânica Automotiva</title>
+    <link rel="stylesheet" href="style.css">
+    <header> 
+
+        <nav> 
+    
+            <a class="logo" href=""><img class="imagem" src="logo.png" alt="">
+            </a> 
+    
+            <div class="mobile-menu"> 
+    
+                <div class="line1"></div> 
+    
+                <div class="line2"></div> 
+    
+                <div class="line3"></div> 
+    
+            </div> 
+    
+            <ul class="nav-list"> 
+    
+                <li><a href="/index.html">HOME</a></li> 
+    
+                <li><a href="/Detalhes_mecanica/index.html">MECÂNICA</a></li> 
+    
+                <li><a href="/storage/localstorage.html">ÁREA DO USUARIO</a></li> 
+    
+
+            </ul> 
+    
+        </nav> 
+
+    
+    </header> 
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: px;
+        }
+        
+        
+        
+        nav { 
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+            height: 13vh;   
+            margin-bottom: 2%;
+            box-shadow: 1px 3px 15px 2px rgba(0,0,0,0.75);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+        .nav-list li {
+            display: inline;
+            margin: 0 10px;
+
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rating-label {
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .rating-select {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .suggestions-label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .suggestions-input {
+            width: 300px;
+            height: 100px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .faq-label {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .star-container {
+            font-size: 24px;
+        }
+
+        .fa-star.checked {
+            color: orange;
+        }
+
+
+        footer {
+            background-color: #01213d; /* Cor azul */
+            color: #fff; /* Cor do texto branco */
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff; /* Garante que os links no rodapé sejam brancos */
+        }
+
+        /* Adicione um espaçamento entre o conteúdo principal e o rodapé */
+        body {
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1></h1>
+    <img class="imagem" src="emoji_satisfaction_meter.jpg" alt="" style="width: 120px; height: 30px; margin-top: 50px;">
+    <div class="spacer"
+
+         class="rating-label"></div>
+        <select class="rating-select" id="rating">
+            <option value="Péssimo">⭐(Péssimo)</option>
+            <option value="Ruim">⭐⭐(Ruim)</option>
+            <option value="Neutro">⭐⭐⭐(Neutro)</option>
+            <option value="Bom">⭐⭐⭐⭐(Bom)</option>
+            <option value="Ótimo">⭐⭐⭐⭐⭐(Ótimo)</option>
+        </select>
+
+        <div class="slidecontainer">
+            <input type="range" min="1" max="5" value="3" class="slider" id="ratingSlider">
+            <div class="slidecontainer">
+            </div>
+        </div>
+
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <div class="star-container" id="starContainer">
+            <span class="fa fa-star" onclick="rateStar(1)"></span>
+            <span class="fa fa-star" onclick="rateStar(2)"></span>
+            <span class="fa fa-star" onclick="rateStar(3)"></span>
+            <span class="fa fa-star" onclick="rateStar(4)"></span>
+            <span class="fa fa-star" onclick="rateStar(5)"></span>
+        </div>
+
+        <div class="suggestions-label">Sugestões:</div>
+        <textarea class="suggestions-input" id="suggestions"></textarea>
+
+        <button class="submit-button" id="submit-button">Enviar</button>
+
+        <h2 class="faq-label">Perguntas Frequentes (FAQ):</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pergunta</th>
+                    <th>Resposta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Quais serviços de mecânica automotiva vocês oferecem?</td>
+                    <td>Oferecemos uma variedade de serviços de mecânica automotiva, incluindo manutenção preventiva (troca de óleo, filtros, inspeção de fluidos), reparos gerais, cuidados com freios e suspensão, serviços de transmissão, atenção ao sistema de ar condicionado, troca de pneus com alinhamento e balanceamento, e serviços elétricos, abrangendo baterias e iluminação. Nosso compromisso é proporcionar alta qualidade, visando a segurança e o desempenho do seu veículo</td>
+                </tr>
+                <tr>
+                    <td>Como agendar um serviço?</td>
+                    <td>Você deve entrar em contato em nosso What'sApp, redes sociais e através de nosso website.</td>
+                </tr>
+                <tr>
+                    <td>Quanto tempo levará para concluir o serviço no meu veículo?</td>
+                    <td>O tempo de conclusão varia dependendo do serviço. Forneceremos uma estimativa quando você agendar e informaremos se houver atrasos inesperados.</td>
+                </tr>
+                <tr>
+                <td>Com que frequência devo fazer a manutenção preventiva do meu veículo?</td>
+                    <td>A frequência da manutenção varia de acordo com o veículo e o uso. Recomendamos seguir as diretrizes do manual do proprietário e consultar nossos técnicos para orientação personalizada.</td>
+                </tr>
+                <tr>    
+                    <td>Posso esperar na oficina durante o serviço?</td>
+                    <td>Sim, você pode esperar na oficina durante o serviço. Temos uma área de espera confortável onde você pode aguardar enquanto nossos técnicos realizam o serviço no seu veículo.</td>
+                </tr>
+                <tr>  
+                    <td>Vocês oferecem serviços de busca e entrega de veículos?</td>
+                    <td>Sim, oferecemos serviços de busca e entrega de veículos, sujeitos a disponibilidade. Se preferir não vir até a oficina ou se estiver enfrentando dificuldades para trazer seu veículo até nós, podemos organizar o serviço de busca e entrega por uma taxa adicional. Entre em contato para agendar o serviço e discutir os detalhes específicos.</td>
+                </tr>
+                <tr>
+                   <td>Quais métodos de pagamento vocês aceitam?</td>
+                    <td>Aceitamos uma variedade de métodos de pagamento para sua conveniência, incluindo Pix para pagamentos rápidos e seguros através de chave correspondente, cartões de crédito e débito das principais bandeiras, boleto bancário para quem prefere essa opção, carteiras digitais populares para pagamento online, e também dinheiro, aceito diretamente na oficina.</td> 
+                 </tr>
+                <tr>
+                    <td>O que devo fazer se não estiver satisfeito com o serviço prestado?</td>
+                    <td>Se não estiver satisfeito com o serviço prestado, valorizamos a oportunidade de corrigir qualquer problema. Por favor, entre em contato conosco imediatamente para que possamos entender melhor suas preocupações e tomar as medidas necessárias para resolver qualquer problema.
+
+Além disso, incentivamos você a fornecer feedback detalhado na nossa página de avaliação do sistema. Seu feedback é crucial para aprimorarmos nossos serviços e garantir que possamos oferecer a melhor experiência possível. </td>
+                </tr>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+        var rating = document.getElementById('rating').value;
+        var suggestions = document.getElementById('suggestions').value;
+        console.log('Avaliação: ' + rating);
+        console.log('Sugestões: ' + suggestions);
+        alert('A CarFixHub agradece seu feedback!'); 
+    });
+    function rateStar(starCount) {
+        const stars = document.querySelectorAll('.fa-star');
+        stars.forEach((star, index) => {
+            star.classList.toggle('checked', index < starCount);
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+    // Function to update stars based on slider value
+    function updateStars() {
+        var sliderValue = document.getElementById('ratingSlider').value;
+        var starContainer = document.getElementById('starContainer');
+        starContainer.innerHTML = ''; // Clear previous stars
+        for (var i = 1; i <= 5; i++) {
+            var star = document.createElement('span');
+            star.className = 'fa fa-star ' + (i <= sliderValue ? 'checked' : '');
+            star.id = 'star' + i; // Assign unique ID for each star
+            star.setAttribute('onclick', 'rateStar(' + i + ')'); // Assign onclick event to each star
+            starContainer.appendChild(star);
+        }
+    }
+    // Add event listener to update stars when slider changes
+    document.getElementById('ratingSlider').addEventListener('input', updateStars);
+    // Initial update on page load
+    updateStars();
+    function rateStar(starCount) {
+        var stars = document.querySelectorAll('.fa-star');
+        stars.forEach((star, index) => {
+            star.classList.toggle('checked', index < starCount);
+        });
+    }
+});
+</script>
+<footer>
+    <div>
+        <a id="aw">Av. Brasil, 2023 - Funcionarios, Belo Horizonte - MG, 30140-002</a><br>
+        <a id="aw">(55)31 98988-4041</a>
+    </div>
+</footer>    
+</body>
+</html>
